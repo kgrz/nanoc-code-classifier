@@ -15,5 +15,6 @@ Gem::Specification.new do |s|
   s.files        = Dir.glob("lib/**/*.rb") + %w(LICENSE README.md)
   s.require_path = "lib"
 
-  s.add_dependency 'nokogiri'
+  s.add_dependency 'nokogiri', '~> 1.0'
+  s.add_dependency 'nanoc',    '~> 3.0'
 end

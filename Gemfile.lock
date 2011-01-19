@@ -1,12 +1,18 @@
 PATH
   remote: .
   specs:
-    nanoc-code-classifier (0.0.1)
-      nokogiri
+    nanoc-code-classifier (0.0.2)
+      nanoc (~> 3.0)
+      nokogiri (~> 1.0)
 
 GEM
   remote: http://rubygems.org/
   specs:
+    cri (1.0.1)
+    nanoc (3.1.6)
+      nanoc3 (>= 3.1.6)
+    nanoc3 (3.1.6)
+      cri (>= 1.0.0)
     nokogiri (1.4.4)
 
 PLATFORMS
