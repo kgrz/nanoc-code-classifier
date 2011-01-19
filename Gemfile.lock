@@ -1,0 +1,16 @@
+PATH
+  remote: .
+  specs:
+    nanoc-code-classifier (0.0.1)
+      nokogiri
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    nokogiri (1.4.4)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  nanoc-code-classifier!
