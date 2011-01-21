@@ -13,16 +13,21 @@ module Nanoc3
       type :text
 
       def run(content, params = {})
+        params = {
+          :caption => {},
+          :pre     => {}
+        }.update(params)
+
         html = Nokogiri::HTML.fragment(content)
 
         html.xpath("pre/code").each do |code|
           pre = code.parent
 
           # Set the class on the <pre>.
-          append_class(pre, params[:pre_class]) if params[:pre_class]
+          append_class(pre, params[:pre][:class]) if params[:pre][:class]
 
-          process_language_tag(code)
-          process_caption_tag(code)
+          process_language_tag(code, params)
+          process_caption_tag(code, params[:caption])
         end
 
         html.to_s
@@ -30,14 +35,18 @@ module Nanoc3
 
     private
 
-      def process_language_tag(element)
+      def process_language_tag(element, params)
         element.content = element.content.sub(/\[\s*@language\s*=\s*"([^"]+)"\s*\]/) do
           append_class(element, "language-#{$1}")
           nil
         end.strip!
       end
 
-      def process_caption_tag(element)
+      def process_caption_tag(element, params)
+        params = {
+          :position => :top
+        }.update(params)
+
         element.content = element.content.sub(/\[\s*@caption\s*=\s*"([^"]+)"\s*\]/) do
           # Wrap in a <figure>.
           figure = Nokogiri::XML::Node.new("figure", element.document)
@@ -47,7 +56,16 @@ module Nanoc3
           # Add a <figcaption>.
           figcaption = Nokogiri::XML::Node.new("figcaption", element.document)
           figcaption.content = $1
-          element.parent.add_next_sibling(figcaption)
+
+          position = params[:position].to_sym
+
+          if position == :top
+            element.parent.add_previous_sibling(figcaption)
+          elsif position == :bottom
+            element.parent.add_next_sibling(figcaption)
+          else
+            raise "Unknown position: #{position}"
+          end
 
           nil
         end.strip!
