@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "nanoc3/filters/code_classifier/version"
+require "nanoc/filters/code_classifier/version"
 
 Gem::Specification.new do |s|
   s.name        = "nanoc-code-classifier"
-  s.version     = Nanoc3::Filters::CodeClassifier::VERSION
+  s.version     = Nanoc::Filters::CodeClassifier::VERSION
   s.platform    = Gem::Platform::RUBY
   s.author      = "Josh Bassett"
   s.email       = "josh.bassett@gmail.com"

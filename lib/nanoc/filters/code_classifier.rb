@@ -1,6 +1,6 @@
 require 'nokogiri'
 
-module Nanoc3
+module Nanoc
   module Filters
     # A nanoc filter which pre-processes code elements for special tags.
     #
@@ -8,7 +8,7 @@ module Nanoc3
     #
     #     [@language="ruby"]
     #     [@caption="lorem ipsum"]
-    class CodeClassifier < Nanoc3::Filter
+    class CodeClassifier < Nanoc::Filter
       identifier :code_classifier
       type :text
 

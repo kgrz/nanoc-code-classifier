@@ -1,1 +1,1 @@
-require 'nanoc3/filters/code_classifier'
+require 'nanoc/filters/code_classifier'
